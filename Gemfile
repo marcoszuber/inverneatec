@@ -70,3 +70,13 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "devise"
+gem "pundit"
+gem "simple_form"
+gem 'sassc-rails', '~> 2.1.2'
+gem 'bootstrap', '~> 5.1.3'
+gem 'csv'
+
+gem "ahoy_matey", "~> 5.0"
+gem "chartkick", "~> 5.0"

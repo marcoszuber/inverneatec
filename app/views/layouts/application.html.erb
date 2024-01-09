@@ -2,15 +2,19 @@
 <html>
   <head>
     <title>Inverneatec</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://assets-global.website-files.com/621aeb805857fc0c3cf0e21d/627dcc53a1967504a64c0c5a_Favi.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= render "shared/flashes" %>
   </head>
-
+  <%= render "shared/navbar" %>
   <body>
     <%= yield %>
   </body>
+  <%= render "shared/footer" %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 </html>

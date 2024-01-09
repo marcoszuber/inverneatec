@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    Archivos
+  </div>
+  <div class="card-body">
+    <% @archivos.each do |archivo| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= archivo.titulo %></h5>
+          <p class="card-text"><strong>Description:</strong> <%= archivo.descripcion %></p>
+          <p class="card-text"><strong>Created At:</strong> <%= archivo.created_at.strftime("%d/%m/%Y") %></p>
+          <%= link_to 'Show', archivo, class: "btn btn-primary" %>
+          <%= link_to 'Edit', edit_archivo_path(archivo), class: "btn btn-secondary" %>
+          <%= form_with(model: archivo, url: archivo_path(archivo), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
+            <%= form.submit 'Destroy', class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
