@@ -1,14 +1,14 @@
 <!-- app/views/archivos/show.html.erb -->
 
-<h1>Detalles del Archivo</h1>
 
-<p><strong>Título:</strong> <%= @archivo.titulo %></p>
+<h1><strong><%= @archivo.titulo %></strong></h1>
 <p><strong>Descripción:</strong> <%= @archivo.descripcion %></p>
-<p><strong>Notas:</strong> <%= @archivo.notas %></p>
 
-<%= pie_chart @archivo.muestreos.group(:sexo).count %>
-<%= pie_chart @archivo.muestreos.group(:origen).count %>
 
+<div class="d-flex">
+  <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], width: "50%", height: "50%", donut: true %>
+  <%= pie_chart @archivo.muestreos.group(:origen).count, colors: ["#285430", "#5F8D4E", "#A7C957", "#F2E8CF", "#F2AE72", "#D96459", "#8C4646"], width: "50%", height: "50%", donut: true %>
+</div>
 <!-- CSS de DataTables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
 
@@ -79,7 +79,7 @@
       </table>
     </div>
 <%end%>
-
+<p><strong>Notas:</strong> <%= @archivo.notas %></p>
 
 <script type="text/javascript">
   $(document).ready(function() {

@@ -44,5 +44,6 @@ class MuestreosController < ApplicationController
 
   def index
     @muestreos = Muestreo.all
+    @muestreo = policy_scope(Muestreo)
   end
 end

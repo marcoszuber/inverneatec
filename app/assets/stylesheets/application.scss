@@ -18,9 +18,12 @@ body {
   background-color: #f7f8fc;
 }
 
-.backgroud-gris {
+.sticky-top {
   background-color: #f7f8fc;
+  position: sticky;
+  top: 0;
 }
+
 
 
 /* Estilos para el banner */
@@ -65,4 +68,34 @@ body {
 
 .banner-content p {
   font-size: 1.5em;
+}
+
+a{
+  text-decoration: none;
+}
+
+.boton{
+  background-color: #f7f8fc;
+  color: #275a24;
+  border: 2px solid #275a24;
+  border-radius: 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+  margin: 10px;
+
+}
+
+.boton:hover{
+  background-color: #275a24;
+  color: #f7f8fc;
+  border: 2px solid #f7f8fc;
+  border-radius: 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+  margin: 10px;
+  transition-duration: 0.5s;
+}
+
+.texto-verde{
+  color: #275a24;
 }

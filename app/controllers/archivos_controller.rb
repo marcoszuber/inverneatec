@@ -1,11 +1,15 @@
 # app/controllers/archivos_controller.rb
 class ArchivosController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @archivos = Archivo.all
+    @archivo = policy_scope(Archivo)
   end
 
   def new
     @archivo = Archivo.new
+    authorize @archivo
   end
 
   def create
@@ -13,6 +17,7 @@ class ArchivosController < ApplicationController
 
     begin
       archivo = Archivo.new(archivo_params)
+      authorize archivo
 
       if archivo.save
         file = params[:archivo][:archivo].tempfile
@@ -62,12 +67,14 @@ class ArchivosController < ApplicationController
   def show
     @archivo = Archivo.find(params[:id])
     @muestreos = @archivo.muestreos
+    authorize @archivo
   end
 
   def destroy
     @archivo = Archivo.find(params[:id])
     @archivo.destroy
     redirect_to archivos_path, notice: "Archivo eliminado exitosamente."
+    authorize @archivo
   end
 
   private
