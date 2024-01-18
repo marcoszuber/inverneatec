@@ -5,7 +5,11 @@
         <div class="card m-2 col-lg-3 col-md-5 col-sm-12">
           <div class="card-body">
             <h5 class="card-title texto-verde"><%= archivo.titulo %></h5>
-            <p class="card-text texto-verde"><strong>Description:</strong> <%= archivo.descripcion %></p>
+            <p class="card-text texto-verde">
+              <strong>Description:</strong>
+              <%= archivo.descripcion.length > 50 ? archivo.descripcion.slice(0, 50) + '...' : archivo.descripcion %>
+            </p>
+
             <div class="d-flex aling-items-center justify-content-between">
               <p class="card-text texto-verde" style="margin-bottom: 0px; "><strong>Created At:</strong> <%= archivo.created_at.strftime("%d/%m/%Y") %></p>
               <%= link_to 'Show', archivo, class: "boton" %>
