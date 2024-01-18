@@ -67,6 +67,11 @@ class ArchivosController < ApplicationController
   def show
     @archivo = Archivo.find(params[:id])
     @muestreos = @archivo.muestreos
+    gdm_numeros = @archivo.muestreos.pluck(:gdm).map { |gdm| gdm.to_s.gsub(',', '.').to_f }
+
+    @promedio_peso = @archivo.muestreos.average(:peso)
+    @promedio_gdm = gdm_numeros.empty? ? 0 : gdm_numeros.compact.sum / gdm_numeros.compact.size
+
     authorize @archivo
   end
 

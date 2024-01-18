@@ -12,7 +12,10 @@
       <ul class="navbar-nav">
         <li class="nav-item d-lg-flex d-md-flex d-sm-block">
           <% if user_signed_in? %>
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= form_for(current_user, url: destroy_user_session_path, method: :delete) do |f| %>
+              <%= f.submit "Sign Out", class: "nav-link"  %>
+            <% end %>
+
             <%= link_to "Importacion de CSV", new_archivo_path, class: "nav-link"  %>
           <% end %>
           <%= link_to "Muestreos", muestreos_path, class: "nav-link" %>
