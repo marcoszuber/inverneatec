@@ -3,7 +3,8 @@ class ArchivosController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @archivos = Archivo.all
+    #inverti la lista de archivos para que se muestre el ultimo primero
+    @archivos = Archivo.all.reverse
     @archivo = policy_scope(Archivo)
   end
 
