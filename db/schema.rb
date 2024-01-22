@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_08_152911) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_22_165412) do
   create_table "archivos", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_152911) do
     t.string "numero_muestro"
     t.integer "archivo_id"
     t.index ["archivo_id"], name: "index_muestreos_on_archivo_id"
+  end
+
+  create_table "precios", force: :cascade do |t|
+    t.string "categoria"
+    t.string "max_precio"
+    t.string "prom_precio"
+    t.string "min_precio"
+    t.string "cantidad_cab"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

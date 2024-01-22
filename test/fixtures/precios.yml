@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categoria: MyString
+  max_precio: MyString
+  prom_precio: MyString
+  min_precio: MyString
+  cantidad_cab: MyString
+
+two:
+  categoria: MyString
+  max_precio: MyString
+  prom_precio: MyString
+  min_precio: MyString
+  cantidad_cab: MyString

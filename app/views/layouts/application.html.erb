@@ -23,11 +23,20 @@
     </style>
     <%= render "shared/flashes" %>
   </head>
-  <%= render "shared/navbar" %>
-  <body>
-    <%= yield %>
+
+  <body class="d-flex flex-column min-vh-100">
+    <%= render "shared/navbar" %>
+
+    <!-- Contenido principal -->
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= render "shared/footer" %>
+
+    <!-- Otras etiquetas body... -->
   </body>
-  <%= render "shared/footer" %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+
+
 </html>

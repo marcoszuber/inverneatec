@@ -83,3 +83,6 @@ gem 'sassc-rails', '~> 2.1.2'
 gem 'bootstrap', '~> 5.1.3'
 gem 'csv'
 gem 'chartkick'
+gem 'nokogiri'
+gem 'open-uri'
+gem 'whenever', require: false

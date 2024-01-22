@@ -8,3 +8,31 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div style="margin: 20px; font-family: 'Arial', sans-serif;" class=' align-items-center justify-content-center'>
+    <h1 style="color: #275a24; text-align: center;">Precios</h1>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+      <thead style="background-color: #275a24; color: #fff;">
+        <tr>
+          <th style="padding: 15px;">Categoría</th>
+          <th style="padding: 15px;">Max Precio</th>
+          <th style="padding: 15px;">Prom Precio</th>
+          <th style="padding: 15px;">Min Precio</th>
+          <th style="padding: 15px;">Cantidad Cab</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @precios.each do |precio| %>
+          <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 15px;"><%= precio[:categoria] %></td>
+            <td style="padding: 15px;"><%= precio[:max_precio] %></td>
+            <td style="padding: 15px;"><%= precio[:prom_precio] %></td>
+            <td style="padding: 15px;"><%= precio[:min_precio] %></td>
+            <td style="padding: 15px;"><%= precio[:cantidad_cab] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
