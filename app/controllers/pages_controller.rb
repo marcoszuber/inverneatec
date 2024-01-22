@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   def home
     @precios = Precio.all
+    @archivos = Archivo.all.reverse[0..2]
   end
 
 

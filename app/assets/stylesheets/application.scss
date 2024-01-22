@@ -161,3 +161,43 @@ a{
 .table tbody tr:hover {
   background-color: #f1f1f1;
 }
+
+.cardmz{
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+
+  border-radius: 10px;
+  padding: 3px 6px;
+  cursor: pointer;
+  margin: 10px;
+  transition-duration: 0.5s;
+
+
+  img {
+    border-radius: 8px; /* Un poco más de suavidad en las esquinas */
+    margin-bottom: 10px; /* Separación entre la imagen y el contenido */
+     /* Hacer que la imagen ocupe el 100% del ancho de su contenedor */
+    max-height: 300px;
+    object-fit: cover; /* Cubrir completamente el contenedor sin deformar la imagen */
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    margin: 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  .cardmz{
+    img {
+      border-radius: 8px; /* Un poco más de suavidad en las esquinas */
+      margin-bottom: 10px; /* Separación entre la imagen y el contenido */
+       /* Hacer que la imagen ocupe el 100% del ancho de su contenedor */
+      max-height: 300px;
+      object-fit: cover; /* Cubrir completamente el contenedor sin deformar la imagen */
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      margin: 0%;
+      margin-left: 0%;
+    }
+  }
+}

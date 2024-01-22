@@ -12,7 +12,7 @@
 
             <div class="d-flex aling-items-center justify-content-between">
               <p class="card-text texto-verde" style="margin-bottom: 0px; "><strong>Created At:</strong> <%= archivo.created_at.strftime("%d/%m/%Y") %></p>
-              <%= link_to 'Show', archivo, class: "boton" %>
+              <%= link_to 'Ver', archivo, class: "boton" %>
             </div>
             <% if user_signed_in? %>
               <%= link_to 'Edit', edit_archivo_path(archivo), class: "btn btn-secondary" %>

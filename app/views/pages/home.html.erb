@@ -8,6 +8,48 @@
     </div>
   </div>
 </div>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+
+      <div class="row cardmz">
+        <!-- Imagen solo visible en pantallas grandes -->
+        <img src="https://images.unsplash.com/photo-1609954111457-b377c9743c16?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="d-none d-lg-block col-6">
+
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <h1 class="" style="color: #275a24; text-align: center;">¿Qué es Invernea Tecnología?</h1>
+
+          <p class="texto">
+            Bienvenido a nuestro espacio donde compartimos informes sobre los avances en software y el crecimiento ganadero. Este lugar está dedicado a documentar y analizar detalladamente la evolución de nuestros campos, destacando los aspectos relacionados con el desarrollo de software y los logros en la expansión y mejora de nuestras operaciones ganaderas. Este repositorio integral refleja nuestro compromiso con la transparencia y la comunicación efectiva sobre el progreso y las estrategias implementadas en ambas áreas clave de nuestro negocio.
+          </p>
+        </div>
+
+        <!-- Imagen visible solo en pantallas pequeñas (móviles) -->
+        <img src="https://images.unsplash.com/photo-1609954111457-b377c9743c16?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="card-img-bottom d-md-none">
+      </div>
+
+
+
+    <h1 style="color: #275a24; text-align: center;">Informes</h1>
+    <% @archivos.each do |archivo| %>
+      <div class="card m-2 col-lg-3 col-md-5 col-sm-12">
+        <div class="card-body">
+          <h5 class="card-title texto-verde"><%= archivo.titulo %></h5>
+          <p class="card-text texto-verde">
+            <strong>Descripción:</strong>
+            <%= archivo.descripcion.length > 50 ? archivo.descripcion.slice(0, 50) + '...' : archivo.descripcion %>
+          </p>
+
+          <div class="d-flex align-items-center justify-content-between">
+            <p class="card-text texto-verde" style="margin-bottom: 0px;"><strong>Creado en:</strong> <%= archivo.created_at.strftime("%d/%m/%Y") %></p>
+            <%= link_to 'Ver', archivo, class: "boton" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="container">
   <div style="margin: 20px; font-family: 'Arial', sans-serif;" class=' align-items-center justify-content-center'>
     <h1 style="color: #275a24; text-align: center;">Precios</h1>
