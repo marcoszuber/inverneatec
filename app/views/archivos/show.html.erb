@@ -27,7 +27,7 @@
   <div class="d-flex justify-content-between align-items-center">
     <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], width: "50%", height: "50%", donut: true %>
       <!-- grafico de barras del peso.  -->
-    <%= column_chart @datos_grafico, colors: ["#285430"], width: "50%", height: "100%", xtitle: "Peso (kg)", ytitle: "Vacas" %>
+    <%= column_chart @datos_grafico, colors: ["#285430"], width: "50%", height: "100%", xtitle: "Peso (kg)", ytitle: "Novillos" %>
   </div>
 </div>
 <!-- CSS de DataTables -->
