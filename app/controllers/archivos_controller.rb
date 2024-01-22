@@ -43,7 +43,7 @@ class ArchivosController < ApplicationController
               dias: row['Dias'],
               total_de_dias: row['Total de dias'],
               destino: row['Destino'],
-              fecha: row['Fecha'] ? Date.parse(row['Fecha']) : nil,
+              fecha: row['Fecha'] ? Date.strptime(row['Fecha'], '%d/%m/%y') : nil,
               hora: row['Hora'] ? Time.parse(row['Hora']) : nil,
               archivo_id: archivo.id
             }
@@ -68,7 +68,8 @@ class ArchivosController < ApplicationController
     @archivo = Archivo.find(params[:id])
     @muestreos = @archivo.muestreos
     gdm_numeros = @archivo.muestreos.pluck(:gdm).map { |gdm| gdm.to_s.gsub(',', '.').to_f }
-
+    #quiero que en datos_grafico me muestre el peso y la cantidad de muestreos que hay en ese rango de peso de 10 en 10 kg
+    @datos_grafico = @archivo.muestreos.group("FLOOR(peso / 10) * 10").count
     @promedio_peso = @archivo.muestreos.average(:peso)
     @promedio_gdm = gdm_numeros.empty? ? 0 : gdm_numeros.compact.sum / gdm_numeros.compact.size
 

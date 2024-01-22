@@ -1,32 +1,34 @@
 <!-- app/views/archivos/show.html.erb -->
 
+<div class="container">
+  <h1><strong><%= @archivo.titulo %></strong></h1>
+  <p><strong>Descripción:</strong> <%= @archivo.descripcion %></p>
 
-<h1><strong><%= @archivo.titulo %></strong></h1>
-<p><strong>Descripción:</strong> <%= @archivo.descripcion %></p>
-
-<!-- tabla de peso y GDM promedio -->
-<div class="table-container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Peso promedio</th>
-        <th>GDM promedio</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @promedio_peso %></td>
-        <td><%= @promedio_gdm %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- tabla de peso y GDM promedio -->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Peso promedio</th>
+          <th>Ganancia diaria promedio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @promedio_peso %></td>
+          <td><%= @promedio_gdm %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
 
-<div class="d-flex">
-  <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], width: "50%", height: "50%", donut: true %>
-  <%= pie_chart @archivo.muestreos.group(:origen).count, colors: ["#285430", "#5F8D4E", "#A7C957", "#F2E8CF", "#F2AE72", "#D96459", "#8C4646"], width: "50%", height: "50%", donut: true %>
+  <div class="d-flex justify-content-between align-items-center">
+    <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], width: "50%", height: "50%", donut: true %>
+      <!-- grafico de barras del peso.  -->
+    <%= column_chart @datos_grafico, colors: ["#285430"], width: "50%", height: "100%", xtitle: "Peso (kg)", ytitle: "Vacas" %>
+  </div>
 </div>
 <!-- CSS de DataTables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
@@ -44,8 +46,8 @@
 <% if @muestreos.count == 0 %>
   <h1> No hay datos </h1>
 <%else%>
-    <h1>
-      cantidad de muestreos:
+    <h1 class="my-5">
+      Cantidad de muestreos:
       <%=@muestreos.count%>
     </h1>
     <h1>Lista de Muestreos</h1>
@@ -89,7 +91,7 @@
               <td><%= muestreo.dias %></td>
               <td><%= muestreo.total_de_dias %></td>
               <td><%= muestreo.destino %></td>
-              <td><%= muestreo.fecha %></td>
+              <td><%= muestreo.fecha.strftime("%d/%m/%Y")%></td>
               <td><%= muestreo.hora.strftime("%H:%M")%></td>
               <td><%= muestreo.archivo_id %></td>
             </tr>
@@ -98,10 +100,57 @@
       </table>
     </div>
 <%end%>
+
+<% if @muestreos.any? %>
+  <a href="#" id="exportCSV" class="btn btn-success">Exportar a CSV</a>
+<% end %>
+
 <p><strong>Notas:</strong> <%= @archivo.notas %></p>
 
 <script type="text/javascript">
   $(document).ready(function() {
     $('#tablaMuestreos').DataTable();
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var exportButton = document.getElementById('exportCSV');
+
+    if (exportButton) {
+      exportButton.addEventListener('click', function () {
+        exportTableToCSV('tablaMuestreos.csv');
+      });
+    }
+
+    function exportTableToCSV(filename) {
+      var csv = [];
+      var rows = document.querySelectorAll('#tablaMuestreos tbody tr');
+
+      // Encabezados
+      var headers = [];
+      document.querySelectorAll('#tablaMuestreos thead th').forEach(function (header) {
+        headers.push(header.innerText);
+      });
+      csv.push(headers.join(','));
+
+      // Filas
+      rows.forEach(function (row) {
+        var rowData = [];
+        row.querySelectorAll('td').forEach(function (cell) {
+          rowData.push('"' + cell.innerText.replace(/"/g, '""') + '"');
+        });
+        csv.push(rowData.join(','));
+      });
+
+      // Crear y descargar archivo CSV
+      var csvContent = 'data:text/csv;charset=utf-8,' + csv.join('\r\n');
+      var encodedUri = encodeURI(csvContent);
+      var link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   });
 </script>
