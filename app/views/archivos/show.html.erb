@@ -24,11 +24,22 @@
 
 
 
-  <div class="d-flex justify-content-between align-items-center">
-    <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], width: "50%", height: "50%", donut: true %>
-      <!-- grafico de barras del peso.  -->
-    <%= column_chart @datos_grafico, colors: ["#285430"], width: "50%", height: "100%", xtitle: "Peso (kg)", ytitle: "Novillos" %>
+  <div class="row justify-content-center align-items-center">
+    <!-- grafico de pastel -->
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= pie_chart @archivo.muestreos.group(:sexo).count, colors: ["#285430", "#5F8D4E", "#A7C957"], height: "50%", donut: true %>
+    </div>
+
+    <!-- grafico de barras del peso -->
+    <div class="col-lg-6 col-md-6 col-sm-12 my-2">
+      <%= column_chart @datos_grafico, colors: ["#285430"], height: "100%", xtitle: "Peso (kg)", ytitle: "Novillos" %>
+    </div>
   </div>
+
+
+
+
+
 </div>
 <!-- CSS de DataTables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
