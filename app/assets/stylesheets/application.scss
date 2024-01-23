@@ -180,8 +180,8 @@ a{
      /* Hacer que la imagen ocupe el 100% del ancho de su contenedor */
     max-height: 300px;
     object-fit: cover; /* Cubrir completamente el contenedor sin deformar la imagen */
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
     margin: 0%;
   }
 }
