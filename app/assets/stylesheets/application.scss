@@ -103,8 +103,8 @@ a{
 
 .boton{
   background-color: #f7f8fc;
-  color: #275a24;
-  border: 2px solid #275a24;
+  color: #118915;
+  border: 2px solid #118915;
   border-radius: 10px;
   padding: 6px 6px;
   cursor: pointer;
@@ -114,7 +114,7 @@ a{
 }
 
 .boton:hover{
-  background-color: #275a24;
+  background-color: #118915;
   color: #f7f8fc;
   border: 2px solid #f7f8fc;
   border-radius: 10px;
@@ -125,7 +125,7 @@ a{
 }
 
 .texto-verde{
-  color: #275a24;
+  color: #118915;
 }
 
 .titulo-banner, .fontnav{
@@ -194,7 +194,8 @@ a{
   transition-duration: 0.5s;
 
   h1{
-    font-size: 30px;
+    font-size: 26px;
+    color: #118915;
   }
   img {
     border-radius: 8px; /* Un poco más de suavidad en las esquinas */
@@ -223,7 +224,6 @@ a{
   .cardmz{
     p{
       font-size: 0.75em;
-      text-align: center;
     }
     img {
       border-radius: 8px; /* Un poco más de suavidad en las esquinas */
@@ -238,7 +238,7 @@ a{
     }
   }
   .card{
-    text-align: center;
+
     .fecha{
       display: none;
     }
@@ -246,4 +246,16 @@ a{
       width: 100%;
     }
   }
+  .bannertit{
+    font-size: 18px !important;
+    margin-bottom: 1px !important;
+  }
+  .pbanner{
+    font-size: 16px !important;
+  }
+}
+
+.fecha{
+  font-size: 0.75em;
+  color: #118915;
 }
