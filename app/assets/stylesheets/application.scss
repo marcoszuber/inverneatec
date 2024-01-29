@@ -27,9 +27,18 @@ body {
 p{
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+  font-size: 16px;
 }
 
+.bannertit{
+  font-size: 30px !important;
+}
 
+.pbanner{
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--off-white);
+}
 
 .main {
   flex: 1;
@@ -49,7 +58,7 @@ p{
 .banner {
   position: relative;
   width: 100%;
-  height: 70vh; /* Establece la altura del banner */
+  height: 500px; /* Establece la altura del banner */
   overflow: hidden; /* Evita que el video se desborde */
 }
 
@@ -97,10 +106,11 @@ a{
   color: #275a24;
   border: 2px solid #275a24;
   border-radius: 10px;
-  padding: 3px 6px;
+  padding: 6px 6px;
   cursor: pointer;
   margin: 10px;
-
+  text-align: center;
+  font-size: 10px;
 }
 
 .boton:hover{
@@ -108,7 +118,7 @@ a{
   color: #f7f8fc;
   border: 2px solid #f7f8fc;
   border-radius: 10px;
-  padding: 3px 6px;
+  padding: 7px 7px;
   cursor: pointer;
   margin: 10px;
   transition-duration: 0.5s;
@@ -177,14 +187,15 @@ a{
   background-color: #ffffff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   padding: 0%;
-
   border-radius: 8px; /* Un poco más de suavidad en las esquinas */
 
   cursor: pointer;
   margin: 10px;
   transition-duration: 0.5s;
 
-
+  h1{
+    font-size: 30px;
+  }
   img {
     border-radius: 8px; /* Un poco más de suavidad en las esquinas */
     margin-bottom: 10px; /* Separación entre la imagen y el contenido */
