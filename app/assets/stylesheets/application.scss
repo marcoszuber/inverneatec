@@ -26,6 +26,7 @@ body {
 
 p{
   font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
 
 
@@ -117,8 +118,14 @@ a{
   color: #275a24;
 }
 
-.titulo-banner{
+.titulo-banner, .fontnav{
   font-family: 'Montserrat', sans-serif;
+}
+
+.fontnav{
+  font-size: 0.75em;
+  margin-right: 20px;
+  font-weight: lighter;
 }
 
 
@@ -203,6 +210,10 @@ a{
 
 @media (max-width: 767px) {
   .cardmz{
+    p{
+      font-size: 0.75em;
+      text-align: center;
+    }
     img {
       border-radius: 8px; /* Un poco más de suavidad en las esquinas */
       margin-bottom: 10px; /* Separación entre la imagen y el contenido */
@@ -213,6 +224,15 @@ a{
       border-bottom-left-radius: 0px;
       padding-left: 12px;
 
+    }
+  }
+  .card{
+    text-align: center;
+    .fecha{
+      display: none;
+    }
+    .boton{
+      width: 100%;
     }
   }
 }
