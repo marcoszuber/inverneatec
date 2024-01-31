@@ -30,7 +30,7 @@ class ArchivosController < ApplicationController
             next if row.to_h.values.all?(&:blank?) # Saltar líneas en blanco
 
             muestreo_params = {
-              numero_muestro: nombre_archivo,
+              numero_muestro: row['Número de Muestro'],
               peso: row['Peso'],
               gdm: row['GDM'],
               notas_sobre_el_animal: row['Notas sobre el animal'],
@@ -42,11 +42,11 @@ class ArchivosController < ApplicationController
               gpv: row['GPV'],
               gpv_total: row['GPV total'],
               dias: row['Dias'],
-              total_de_dias: row['Total de dias'],
+              total_de_dias: row['Total de días'],
               destino: row['Destino'],
               fecha: row['Fecha'] ? Date.strptime(row['Fecha'], '%d/%m/%y') : nil,
               hora: row['Hora'] ? Time.parse(row['Hora']) : nil,
-              archivo_id: archivo.id
+              archivo_id: archivo.id,
             }
 
             Muestreo.create!(muestreo_params.compact)

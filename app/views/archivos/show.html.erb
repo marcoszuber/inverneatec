@@ -15,8 +15,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @promedio_peso %></td>
-          <td><%= @promedio_gdm %></td>
+          <td><%= @promedio_peso.nil? ? "No hay datos" : @promedio_peso.round(2) %></td>
+          <td><%= @promedio_gdm.nil? ? "No hay datos" : @promedio_gdm.round(2) %></td>
         </tr>
       </tbody>
     </table>
@@ -69,45 +69,29 @@
       <table id="tablaMuestreos" class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Peso</th>
-            <th>GDM</th>
-            <th>Notas sobre el animal</th>
             <th>IDE</th>
-            <th>Origen</th>
+            <th>Peso</th>
             <th>Sexo</th>
-            <th>Tropa</th>
-            <th>GDM total</th>
-            <th>GPV</th>
+            <th>GDM</th>
             <th>GPV total</th>
             <th>Días</th>
-            <th>Total de días</th>
-            <th>Destino</th>
             <th>Fecha</th>
-            <th>Hora</th>
-            <th>archivo</th>
           </tr>
         </thead>
         <tbody>
           <% @muestreos.each do |muestreo| %>
             <tr>
-              <td><%= muestreo.id %></td>
-              <td><%= muestreo.peso %></td>
-              <td><%= muestreo.gdm %></td>
-              <td><%= muestreo.notas_sobre_el_animal %></td>
               <td><%= muestreo.ide %></td>
-              <td><%= muestreo.origen %></td>
+              <td><%= muestreo.peso %></td>
               <td><%= muestreo.sexo %></td>
-              <td><%= muestreo.tropa %></td>
-              <td><%= muestreo.gdm_total %></td>
-              <td><%= muestreo.gpv %></td>
+              <td><%= muestreo.gdm %></td>
               <td><%= muestreo.gpv_total %></td>
               <td><%= muestreo.dias %></td>
-              <td><%= muestreo.total_de_dias %></td>
-              <td><%= muestreo.destino %></td>
-              <td><%= muestreo.fecha.strftime("%d/%m/%Y")%></td>
-              <td><%= muestreo.hora.strftime("%H:%M")%></td>
-              <td><%= muestreo.archivo_id %></td>
+              <% if muestreo.fecha.nil? %>
+                <td></td>
+              <% else %>
+                <td><%= muestreo.fecha.strftime("%d/%m/%Y")%></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

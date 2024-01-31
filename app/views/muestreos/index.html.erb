@@ -38,7 +38,6 @@
               <th>Total de días</th>
               <th>Destino</th>
               <th>Fecha</th>
-              <th>Hora</th>
               <th>archivo</th>
             </tr>
           </thead>
@@ -59,8 +58,11 @@
                 <td><%= muestreo.dias %></td>
                 <td><%= muestreo.total_de_dias %></td>
                 <td><%= muestreo.destino %></td>
-                <td><%= muestreo.fecha.strftime("%d/%m/%Y")%></td>
-                <td><%= muestreo.hora.strftime("%H:%M")%></td>
+                <% if muestreo.fecha.nil? %>
+                  <td></td>
+                <% else %>
+                  <td><%= muestreo.fecha.strftime("%d/%m/%Y")%></td>
+                <% end %>
                 <td><%= muestreo.archivo_id %></td>
               </tr>
             <% end %>
