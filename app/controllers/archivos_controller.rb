@@ -28,6 +28,13 @@ class ArchivosController < ApplicationController
         ActiveRecord::Base.transaction do
           CSV.parse(csv_text, col_sep: ";", headers: true, encoding: 'ISO-8859-1') do |row|
             next if row.to_h.values.all?(&:blank?) # Saltar líneas en blanco
+            peso = row['Peso'].to_f
+            gpv_total = row['GPV total'].to_f
+
+            # Verifica si el denominador no es cero antes de realizar la operación
+            denominador = peso - gpv_total
+            gdm_total = denominador.zero? ? nil :  (denominador/peso).round(4)*100
+
 
             muestreo_params = {
               numero_muestro: row['Número de Muestro'],
@@ -38,7 +45,7 @@ class ArchivosController < ApplicationController
               origen: row['Origen'],
               sexo: row['Sexo'],
               tropa: row['Tropa'],
-              gdm_total: row['GDM total'],
+              gdm_total: gdm_total,
               gpv: row['GPV'],
               gpv_total: row['GPV total'],
               dias: row['Dias'],
@@ -67,13 +74,19 @@ class ArchivosController < ApplicationController
 
   def show
     @archivo = Archivo.find(params[:id])
+    #Agrega una columna a @archivo con el porcentaje de GPV Total/peso incial
+
+    #crea un promedio del gdm total
+
+
     @muestreos = @archivo.muestreos
     gdm_numeros = @archivo.muestreos.pluck(:gdm).map { |gdm| gdm.to_s.gsub(',', '.').to_f }
     #quiero que en datos_grafico me muestre el peso y la cantidad de muestreos que hay en ese rango de peso de 10 en 10 kg
     @datos_grafico = @archivo.muestreos.group(Arel.sql("FLOOR(peso / 10) * 10")).order(Arel.sql("FLOOR(peso / 10) * 10")).count
     @promedio_peso = @archivo.muestreos.average(:peso)
     @promedio_gdm = gdm_numeros.empty? ? 0 : gdm_numeros.compact.sum / gdm_numeros.compact.size
-
+    @promedio_gpv = @archivo.muestreos.average(:gdm_total).round(2)
+    console
     authorize @archivo
   end
 
