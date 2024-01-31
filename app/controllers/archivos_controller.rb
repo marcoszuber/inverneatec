@@ -85,8 +85,7 @@ class ArchivosController < ApplicationController
     @datos_grafico = @archivo.muestreos.group(Arel.sql("FLOOR(peso / 10) * 10")).order(Arel.sql("FLOOR(peso / 10) * 10")).count
     @promedio_peso = @archivo.muestreos.average(:peso)
     @promedio_gdm = gdm_numeros.empty? ? 0 : gdm_numeros.compact.sum / gdm_numeros.compact.size
-    @promedio_gpv = @archivo.muestreos.average(:gdm_total).round(2)
-    console
+    @promedio_gpv = @archivo.muestreos.average(:gdm_total).nil? ? 100 : @archivo.muestreos.average(:gdm_total).round(2)
     authorize @archivo
   end
 
