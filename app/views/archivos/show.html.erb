@@ -16,7 +16,7 @@
       <tbody>
         <tr>
           <td><%= @promedio_peso.nil? ? "No hay datos" : @promedio_peso.round(2) %></td>
-          <td><%= @promedio_gdm.nil? ? "No hay datos" : @promedio_gdm.round(2) %></td>
+          <td><%= @promedio_gdm == 0 ? "No hay datos" : @promedio_gdm.round(2) %></td>
         </tr>
       </tbody>
     </table>
