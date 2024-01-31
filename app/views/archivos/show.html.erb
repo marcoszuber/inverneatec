@@ -9,16 +9,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Peso promedio</th>
-          <th>Ganancia diaria promedio</th>
-          <th>Ganancia promedio de Peso Vivo</th>
+          <th class="text-center">Peso promedio</th>
+          <th class="text-center">Ganancia diaria promedio</th>
+          <th class="text-center">Ganancia promedio de Peso Vivo</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= @promedio_peso.nil? ? "No hay datos" : @promedio_peso.round(2) %></td>
-          <td><%= @promedio_gdm == 0 ? "No hay datos" : @promedio_gdm.round(2) %></td>
-          <td><%= @promedio_gpv == 100 ? "No hay datos suficientes " : @promedio_gpv %>%</td>
+          <td class="text-center"><%= @promedio_peso.nil? ? "No hay datos" : @promedio_peso.round(2) %></td>
+          <td class="text-center"><%= @promedio_gdm == 0 ? "No hay datos" : @promedio_gdm.round(2) %></td>
+          <td class="text-center"><%= @promedio_gpv == 100 ? "No hay datos suficientes " : @promedio_gpv %>%</td>
         </tr>
       </tbody>
     </table>
