@@ -70,7 +70,7 @@ class ArchivosController < ApplicationController
     @muestreos = @archivo.muestreos
     gdm_numeros = @archivo.muestreos.pluck(:gdm).map { |gdm| gdm.to_s.gsub(',', '.').to_f }
     #quiero que en datos_grafico me muestre el peso y la cantidad de muestreos que hay en ese rango de peso de 10 en 10 kg
-    @datos_grafico = @archivo.muestreos.group("FLOOR(peso / 10) * 10").count
+    @datos_grafico = @archivo.muestreos.group("FLOOR(peso / 10) * 10").order("FLOOR(peso / 10) * 10").count
     @promedio_peso = @archivo.muestreos.average(:peso)
     @promedio_gdm = gdm_numeros.empty? ? 0 : gdm_numeros.compact.sum / gdm_numeros.compact.size
 
