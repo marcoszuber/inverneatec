@@ -69,9 +69,9 @@
           <% @precios.each do |precio| %>
             <tr style="border-bottom: 1px solid #ddd;">
               <td style="padding: 15px;"><%= precio[:categoria] %></td>
-              <td style="padding: 15px;"><%= precio[:max_precio] %></td>
-              <td style="padding: 15px;"><%= precio[:prom_precio] %></td>
-              <td style="padding: 15px;"><%= precio[:min_precio] %></td>
+              <td style="padding: 15px;">$ <%= precio[:max_precio].to_s.slice(0..-2) %></td>
+              <td style="padding: 15px;">$ <%= precio[:prom_precio].to_s.slice(0..-2) %></td>
+              <td style="padding: 15px;">$ <%= precio[:min_precio].to_s.slice(0..-2) %></td>
               <td style="padding: 15px;"><%= precio[:cantidad_cab] %></td>
             </tr>
           <% end %>
