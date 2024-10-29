@@ -1,0 +1,82 @@
+<!-- CSS de DataTables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
+<!-- JavaScript de jQuery (requisito para DataTables) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- JavaScript de DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 style="color: #118915; text-align: center;" class='mt-5 bannertit'>Contratos</h1>
+
+    <% if user_signed_in? && (current_user.tipo_de_usuario == 'a' || current_user.tipo_de_usuario == 'o') %>
+      <div class="col-12">
+        <div class="d-flex justify-content-end mb-3">
+          <%= link_to "Nuevo contrato", new_user_contrato_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-12">
+      <div class="table-responsive">
+        <table id="tablaContratos" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Cliente</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Fin</th>
+              <th>Aceptado</th>
+              <th>Creado en</th>
+              <th>vto dias</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contratos.each do |contrato| %>
+              <tr>
+                <td><%= contrato.campo %></td>
+                <td><%= contrato.user.nombre %> <%= contrato.user.apellido %></td>
+                <% if contrato.vigencia_inicio.present? %>
+                  <td><%= contrato.vigencia_inicio.strftime("%d/%m/%Y") %></td>
+                  <td><%= contrato.vigencia_fin.strftime("%d/%m/%Y") %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+
+                <td><%= contrato.acepto_terminos ? 'Sí' : 'No' %></td>
+                <td><%= contrato.created_at.strftime("%d/%m/%Y") %></td>
+                <% if contrato.vigencia_fin.present? %>
+                  <td><%= (contrato.vigencia_fin - Date.today ).to_i %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+                <td>
+                  <%= link_to 'VER MÁS', user_contrato_path(contrato.user_id, contrato), class: "btn btn-info btn-sm" %>
+                  <% if user_signed_in? && current_user.tipo_de_usuario == 'a' && !contrato.acepto_terminos %>
+                    <%= form_with(model: contrato, url: user_contrato_path(contrato.user_id, contrato), method: :delete, data: { confirm: '¿Estás seguro de que quieres eliminar este contrato?' }, class: "d-inline") do |form| %>
+                      <%= form.submit 'Eliminar', class: "btn btn-danger btn-sm" %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tablaContratos').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+      }
+    });
+  });
+</script>

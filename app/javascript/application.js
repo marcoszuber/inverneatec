@@ -4,3 +4,7 @@ import "controllers"
 import "chartkick"
 import "Chart.bundle"
 import "chartkick/chart.js"
+import 'select2'
+import 'select2/dist/css/select2.css'
+
+//= require select2

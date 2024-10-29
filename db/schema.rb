@@ -10,13 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_22_165412) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_28_181954) do
   create_table "archivos", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
     t.text "notas"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contratos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "campo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "acepto_terminos"
+    t.datetime "fecha_de_aceptacion"
+    t.date "fecha"
+    t.string "capitalizador"
+    t.string "capitalista"
+    t.date "vigencia_inicio"
+    t.date "vigencia_fin"
+    t.boolean "prorroga"
+    t.text "obligaciones_capitalizador"
+    t.text "obligaciones_capitalista"
+    t.float "mortandad_tolerada"
+    t.float "mortandad_excedida"
+    t.boolean "encierre"
+    t.string "frecuencia_pesaje"
+    t.float "porcentaje_pesaje"
+    t.float "desbaste"
+    t.float "gdpv"
+    t.float "porcentaje_capitalizador"
+    t.string "forma_cancelacion"
+    t.index ["user_id"], name: "index_contratos_on_user_id"
   end
 
   create_table "muestreos", force: :cascade do |t|
@@ -60,9 +87,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_165412) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nombre"
+    t.string "apellido"
+    t.string "dni"
+    t.string "tipo_de_usuario"
+    t.string "telefono"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contratos", "users"
   add_foreign_key "muestreos", "archivos"
 end

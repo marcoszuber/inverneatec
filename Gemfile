@@ -86,3 +86,9 @@ gem 'chartkick'
 gem 'nokogiri'
 gem 'open-uri'
 gem 'whenever', require: false
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary' # Opción conveniente para desarrollo
+gem 'select2-rails'
+gem 'whenever', require: false
+# Gemfile
+gem 'dotenv-rails', groups: [:development, :test]

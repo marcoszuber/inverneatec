@@ -13,7 +13,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <p class="card-text texto-verde fecha" style="margin-bottom: 0px;"><strong>Creado en:</strong> <%= archivo.created_at.strftime("%d/%m/%Y") %></p>
             <%= link_to 'VER MÁS', archivo, class: "boton" %>
-            <% if user_signed_in? %>
+            <% if user_signed_in? and current_user.tipo_de_usuario == 'a' %>
               <%= form_with(model: archivo, url: archivo_path(archivo), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
                 <%= form.submit 'Eliminar', class: "boton" %>
               <% end %>

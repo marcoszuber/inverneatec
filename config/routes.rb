@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: [:registrations]
+  get 'user_manager/index'
+  get 'user_manager/update_user_type'
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -11,4 +13,19 @@ Rails.application.routes.draw do
     end
   end
   resources :archivos
+
+  resources :users do
+    resources :contratos do
+      member do
+        get :download
+      end
+    end
+  end
+
+  resources :user_manager, only: [:index, :show], controller: 'user_manager' do
+    member do
+      patch :update_user_type
+    end
+  end
+
 end

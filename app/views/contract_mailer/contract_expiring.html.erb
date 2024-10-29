@@ -1,0 +1,12 @@
+<h1>Notificación de Contrato Próximo a Vencer</h1>
+
+<p>Estimado <%= @owner.nombre %>,</p>
+
+<p>Le informamos que su contrato <strong><%= @contract.campo %></strong> está próximo a vencer en 30 días.</p>
+
+<p>Fecha de vencimiento: <%= @contract.vigencia_fin.strftime("%d/%m/%Y") %></p>
+
+<p>Por favor, póngase en contacto con su operador o revise el contrato para cualquier acción necesaria.</p>
+
+<p>Saludos,</p>
+<p>Equipo de Administración</p>

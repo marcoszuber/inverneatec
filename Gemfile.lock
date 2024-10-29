@@ -103,6 +103,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.16.3)
@@ -154,6 +158,7 @@ GEM
       time
       uri
     orm_adapter (0.5.0)
+    ostruct (0.6.0)
     pg (1.5.4)
     popper_js (2.11.8)
     psych (5.1.2)
@@ -215,6 +220,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select2-rails (4.0.13)
     selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -259,6 +265,10 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
+    wicked_pdf (2.8.2)
+      activesupport
+      ostruct
+    wkhtmltopdf-binary (0.12.6.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.12)
@@ -275,6 +285,7 @@ DEPENDENCIES
   csv
   debug
   devise
+  dotenv-rails
   importmap-rails
   jbuilder
   nokogiri
@@ -285,6 +296,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   redis (~> 4.0)
   sassc-rails (~> 2.1.2)
+  select2-rails
   selenium-webdriver
   simple_form
   sprockets-rails
@@ -294,6 +306,8 @@ DEPENDENCIES
   tzinfo-data
   web-console
   whenever
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 3.1.2p20
