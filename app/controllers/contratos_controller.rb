@@ -33,6 +33,10 @@ class ContratosController < ApplicationController
     @contrato = Contrato.new(contrato_params)
     authorize @contrato
 
+    # Convertir los arrays de `gdpv` y `porcentaje_capitalizador` a formato JSON
+    @contrato.gdpv = contrato_params[:gdpv].to_json if contrato_params[:gdpv].is_a?(Array)
+    @contrato.porcentaje_capitalizador = contrato_params[:porcentaje_capitalizador].to_json if contrato_params[:porcentaje_capitalizador].is_a?(Array)
+
     if @contrato.save
       redirect_to user_contratos_path(@contrato.user), notice: 'Contrato creado exitosamente.'
     else
@@ -71,7 +75,13 @@ class ContratosController < ApplicationController
   end
 
   def contrato_params
-    params.require(:contrato).permit(:user_id, :campo, :acepto_terminos, :fecha_de_aceptacion, :fecha, :capitalizador, {capitalista: []}, :vigencia_inicio, :vigencia_fin, :prorroga, :obligaciones_capitalizador, :obligaciones_capitalista, :mortandad_tolerada, :mortandad_excedida, :encierre, :frecuencia_pesaje, :porcentaje_pesaje, :desbaste, {gdpv: []}, {porcentaje_capitalizador: []}, :forma_cancelacion)
+    params.require(:contrato).permit(
+      :user_id, :campo, :acepto_terminos, :fecha_de_aceptacion, :fecha, :capitalizador,
+      {capitalista: []}, :vigencia_inicio, :vigencia_fin, :prorroga,
+      :obligaciones_capitalizador, :obligaciones_capitalista, :mortandad_tolerada,
+      :mortandad_excedida, :encierre, :frecuencia_pesaje, :porcentaje_pesaje,
+      :desbaste, { gdpv: [] }, { porcentaje_capitalizador: [] }, :forma_cancelacion
+    )
   end
 
 
