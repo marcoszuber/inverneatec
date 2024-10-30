@@ -14,13 +14,35 @@
   <div class="mb-4">
     <h3>Partes Involucradas</h3>
     <p><strong>Capitalizador:</strong> <%= @contrato.capitalizador %></p>
-    <p><strong>Capitalista:</strong> <%= @contrato.capitalista %></p>
+    <h4>Capitalista</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>CUIT</th>
+          <th>Domicilio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% JSON.parse(@contrato.capitalista).each do |capitalista_info| %>
+          <% # Separar los datos de cada capitalista en nombre, CUIT y domicilio %>
+          <% nombre, cuit, domicilio = capitalista_info.split(", ") %>
+          <tr>
+            <td><%= nombre %></td>
+            <td><%= cuit.gsub("CUIT: ", "") %></td>
+            <td><%= domicilio.gsub("Domicilio: ", "") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="mb-4">
     <h3>Vigencia</h3>
-    <p><strong>Fecha de Inicio:</strong> <%= @contrato.vigencia_inicio.strftime("%d de %B de %Y") %></p>
-    <p><strong>Fecha de Finalización:</strong> <%= @contrato.vigencia_fin.strftime("%d de %B de %Y") %></p>
+    <% if @contrato.vigencia_inicio.present? %>
+      <p><strong>Fecha de Inicio:</strong> <%= @contrato.vigencia_inicio.strftime("%d de %B de %Y") %></p>
+      <p><strong>Fecha de Finalización:</strong> <%= @contrato.vigencia_fin.strftime("%d de %B de %Y") %></p>
+    <% end %>
     <p><strong>Prórroga:</strong> Las partes podran prorrogar la presente por periodos iguales, mediando cornim acuerdo expresamente manifestado previo al vencimiento. La presente Carta Oferta no podra ser rescindida unilateralmente por ninguna de las partes, salvo incumplimiento de una de las partes de alguna de las obligaciones aqui establecidas. No obstante, estas podran de comim acuerdo, darlo por finalizado antes del plazo aqui estipulado.</p>
   </div>
 
