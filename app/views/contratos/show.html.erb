@@ -66,12 +66,35 @@
     <p><strong>Desbaste Estimado:</strong> <%= @contrato.desbaste %>%</p>
   </div>
 
-  <div class="mb-4">
-    <h3>Condiciones Comerciales</h3>
-    <p><strong>Ganancia Diaria de Peso Vivo (GDPV):</strong> <%= @contrato.gdpv %> gramos</p>
-    <p><strong>Porcentaje para el Capitalizador:</strong> <%= @contrato.porcentaje_capitalizador %>%</p>
-    <p><strong>Forma de Cancelación:</strong> <%= @contrato.forma_cancelacion %></p>
-  </div>
+  <h3>Condiciones Comerciales</h3>
+  <% if @contrato.gdpv.present? and @contrato.porcentaje_capitalizador.present? %>
+    <div class="mb-4">
+
+      <table class="table table-bordered table-striped">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">Ganancia Diaria de Peso Vivo (GDPV)</th>
+            <th scope="col">Porcentaje para el Capitalizador (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% JSON.parse(@contrato.gdpv).each_with_index do |gdpv, index| %>
+            <tr>
+              <td><%= gdpv %> gramos</td>
+              <td><%= JSON.parse(@contrato.porcentaje_capitalizador)[index] %>%</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p><strong>Forma de Cancelación:</strong> <%= @contrato.forma_cancelacion %></p>
+    </div>
+  <% else %>
+    <div class="mb-4">
+      <p>Condiciones comerciales no especificadas</p>
+    </div>
+  <% end %>
+
+
 
   <div class="mb-4">
     <h3>Aceptación de Términos</h3>

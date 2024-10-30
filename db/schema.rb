@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_30_150842) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_193204) do
   create_table "archivos", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
@@ -40,8 +40,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_150842) do
     t.string "frecuencia_pesaje"
     t.float "porcentaje_pesaje"
     t.float "desbaste"
-    t.float "gdpv"
-    t.float "porcentaje_capitalizador"
+    t.text "gdpv"
+    t.text "porcentaje_capitalizador"
     t.string "forma_cancelacion"
     t.index ["user_id"], name: "index_contratos_on_user_id"
   end

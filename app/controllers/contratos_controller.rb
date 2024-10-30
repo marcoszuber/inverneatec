@@ -71,7 +71,7 @@ class ContratosController < ApplicationController
   end
 
   def contrato_params
-    params.require(:contrato).permit(:user_id, :campo, :acepto_terminos, :fecha_de_aceptacion, :fecha, :capitalizador, {capitalista: []}, :vigencia_inicio, :vigencia_fin, :prorroga, :obligaciones_capitalizador, :obligaciones_capitalista, :mortandad_tolerada, :mortandad_excedida, :encierre, :frecuencia_pesaje, :porcentaje_pesaje, :desbaste, :gdpv, :porcentaje_capitalizador, :forma_cancelacion)
+    params.require(:contrato).permit(:user_id, :campo, :acepto_terminos, :fecha_de_aceptacion, :fecha, :capitalizador, {capitalista: []}, :vigencia_inicio, :vigencia_fin, :prorroga, :obligaciones_capitalizador, :obligaciones_capitalista, :mortandad_tolerada, :mortandad_excedida, :encierre, :frecuencia_pesaje, :porcentaje_pesaje, :desbaste, {gdpv: []}, {porcentaje_capitalizador: []}, :forma_cancelacion)
   end
 
 
