@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_28_181954) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_150842) do
   create_table "archivos", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_28_181954) do
     t.string "nombre"
     t.string "apellido"
     t.string "dni"
-    t.string "tipo_de_usuario"
+    t.string "tipo_de_usuario", default: ""
     t.string "telefono"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
