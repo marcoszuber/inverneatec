@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nombre, :apellido, :dni, :telefono, :tipo_de_usuario])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nombre, :apellido, :dni, :telefono, :tipo_de_usuario])
+  end
+
   private
 
   def skip_pundit?
