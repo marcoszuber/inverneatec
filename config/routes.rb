@@ -15,11 +15,7 @@ Rails.application.routes.draw do
   resources :archivos
 
   resources :users do
-    resources :contratos do
-      member do
-        get :download
-      end
-    end
+    resources :contratos
   end
 
   resources :user_manager, only: [:index, :show], controller: 'user_manager' do

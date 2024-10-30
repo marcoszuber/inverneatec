@@ -59,18 +59,6 @@ class ContratosController < ApplicationController
     redirect_to user_contratos_path(@contrato.user)
   end
 
-  def download
-    @user = User.find(params[:user_id])
-    @contrato = @user.contratos.find(params[:id])
-    authorize @contrato  # Agrega esta línea para autorizar el acceso al contrato
-
-    respond_to do |format|
-      format.pdf do
-        render pdf: "Contrato_#{@contrato.id}",
-               template: "contratos/show" # Sin especificar layout, o puedes definir uno si es necesario
-      end
-    end
-  end
 
   private
 
