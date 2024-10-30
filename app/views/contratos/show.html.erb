@@ -107,21 +107,27 @@
   <div class="mb-4">
     <p><strong>Fecha de Actualización:</strong> <%= @contrato.updated_at.strftime("%d/%m/%Y") %></p>
 
-    <% if @contrato.acepto_terminos && current_user.tipo_de_usuario == 'c' %>
-      <p class="text-success">Gracias por aceptar los términos del contrato</p>
-    <% elsif current_user.tipo_de_usuario == 'c' %>
-      <p class="text-warning">Por favor, acepta los términos del contrato para continuar</p>
+    <% if current_user.tipo_de_usuario == 'c' %>
+      <% if @contrato.acepto_terminos %>
+        <p class="text-success">Gracias por aceptar los términos del contrato</p>
+      <% else %>
+        <p class="text-warning">Para la aceptación de los términos del contrato, por favor marque la casilla correspondiente y haga clic en "Solicitar Contrato"</p>
+      <% end %>
+
       <%= form_with(model: [@user, @contrato], local: true) do |form| %>
-        <div class="form-check">
-          <%= form.label :acepto_terminos, "Acepto los términos del contrato", class: "form-check-label" %>
-          <%= form.check_box :acepto_terminos, class: "form-check-input" %>
-        </div>
-        <div class="mt-3">
-          <%= form.submit "Aceptar Términos", class: "btn btn-success" %>
+        <% unless @contrato.acepto_terminos %>
+          <div class="form-check mb-3">
+            <%= form.check_box :acepto_terminos, class: "form-check-input", id: "accept_terms_checkbox" %>
+            <%= form.label :acepto_terminos, "Acepto los términos del contrato", class: "form-check-label" %>
+          </div>
+        <% end %>
+
+        <div class="text-center">
+          <%= form.submit "Solicitar Contrato", class: "btn btn-success", id: "submit_button", disabled: true %>
         </div>
       <% end %>
     <% else %>
-      <p>Terminos y condiciones: <%= @contrato.acepto_terminos? ? 'Sí' : 'No' %></p>
+      <p>Términos y condiciones: <strong><%= @contrato.acepto_terminos? ? 'Sí' : 'No' %></strong></p>
     <% end %>
   </div>
 
@@ -137,4 +143,15 @@
       window.print(); // Activa la función de impresión del navegador
     });
   });
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var checkbox = document.getElementById("accept_terms_checkbox");
+    var submitButton = document.getElementById("submit_button");
+
+    checkbox.addEventListener("change", function() {
+      submitButton.disabled = !checkbox.checked;
+    });
+  });
+
 </script>
