@@ -1,6 +1,7 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center">
     <h1>Detalles del Contrato de Capitalización</h1>
+    <button id="printButton" class="btn btn-primary">Imprimir PDF</button>
   </div>
 
   <hr>
@@ -101,5 +102,16 @@
     <% end %>
   </div>
 
-  <%= link_to 'Volver a la lista', user_contratos_path(@user), class: 'btn btn-secondary mt-4' %>
+  <%= link_to 'Volver a la lista', user_contratos_path(@user), class: 'btn btn-secondary mt-4', id: 'volverlist' %>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const printButton = document.getElementById("printButton");
+
+    printButton.addEventListener("click", function() {
+      window.print(); // Activa la función de impresión del navegador
+    });
+  });
+</script>

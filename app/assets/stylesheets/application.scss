@@ -275,3 +275,21 @@ a{
   position: relative;
   overflow: hidden;
 }
+
+@media print {
+  /* Oculta la navbar en la vista de impresión */
+  .navbar, .footer {
+    display: none;
+  }
+
+  /* Oculta el botón de imprimir para que no aparezca en el PDF */
+  #printButton, #volverlist {
+    display: none;
+  }
+
+
+  /* Puedes agregar más estilos específicos para impresión */
+  body {
+    font-size: 14px; /* Ajusta el tamaño del texto si es necesario */
+  }
+}
