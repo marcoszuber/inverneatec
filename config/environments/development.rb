@@ -43,12 +43,12 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'gmail.com',
-    user_name:            ENV['GMAIL_USERNAME'], # variable de entorno para tu correo
-    password:             ENV['GMAIL_PASSWORD'], # variable de entorno para tu contraseña
+    user_name:            ENV['GMAIL_USERNAME'],
+    password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: 'your-production-domain.com', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'your-heroku-app.herokuapp.com', protocol: 'https' }
 
 
   # Print deprecation notices to the Rails logger.
