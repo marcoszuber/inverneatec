@@ -60,13 +60,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'invernea.com',
-    user_name:            ENV['EMAIL_USERNAME'], # Debe estar configurado en el entorno de producción
-    password:             ENV['EMAIL_PASSWORD'], # Debe estar configurado en el entorno de producción
+    domain:               'gmail.com',
+    user_name:            ENV['GMAIL_USERNAME'],
+    password:             ENV['GMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: 'your-production-domain.com', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'your-heroku-app.herokuapp.com', protocol: 'https' }
 
   # Enable locale fallbacks for I18n.
   config.i18n.fallbacks = true
