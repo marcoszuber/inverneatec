@@ -90,4 +90,4 @@ gem 'wicked_pdf'
 gem 'select2-rails'
 #gem 'whenever', require: false
 ## Gemfile
-#gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test, :production]
