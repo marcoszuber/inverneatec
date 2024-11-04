@@ -10,7 +10,8 @@
       <% if @documentacion.archivo.attached? %>
       <div class="mt-3">
         <p><strong>Archivo Adjunto:</strong></p>
-        <%= link_to 'Ver PDF', rails_blob_path(@documentacion.archivo, disposition: 'inline'), target: '_blank', class: 'btn btn-primary' %>      </div>
+        <%= link_to 'Descargar PDF', rails_blob_path(@documentacion.archivo, disposition: 'attachment'), target: '_blank', class: 'btn btn-primary' %>
+      </div>
       <% else %>
         <p class="text-warning">No hay archivo adjunto.</p>
       <% end %>
