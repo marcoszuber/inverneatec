@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resources :contratos
   end
 
+  resources :documentacions
+
+
   resources :user_manager, only: [:index, :show], controller: 'user_manager' do
     member do
       patch :update_user_type
