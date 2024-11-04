@@ -1,137 +1,138 @@
 <div class="container mt-5">
-  <div class="d-flex justify-content-between align-items-center">
-    <h1>Detalles del Contrato de Capitalización</h1>
-    <button id="printButton" class="btn btn-primary">Imprimir PDF</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold">Detalles del Contrato de Capitalización</h1>
+    <button id="printButton" class="btn btn-primary">
+      <i class="bi bi-printer"></i> Imprimir PDF
+    </button>
   </div>
 
-  <hr>
-
-  <div class="mb-4">
-    <h3>Información General</h3>
-    <p><strong>Fecha:</strong> <%= @contrato.created_at.present? ? @contrato.created_at.strftime("%d de %B de %Y") : "Fecha no especificada" %></p>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Información General</h3>
+      <p class="card-text">
+        <strong>Fecha:</strong> <%= @contrato.created_at.present? ? @contrato.created_at.strftime("%d de %B de %Y") : "Fecha no especificada" %>
+      </p>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <h3>Partes Involucradas</h3>
-    <p><strong>Capitalizador:</strong> <%= @contrato.capitalizador %></p>
-    <h4>Capitalista</h4>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>CUIT</th>
-          <th>Domicilio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% JSON.parse(@contrato.capitalista).each do |capitalista_info| %>
-          <% # Separar los datos de cada capitalista en nombre, CUIT y domicilio %>
-          <% nombre, cuit, domicilio = capitalista_info.split(", ") %>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Datos del Establecimiento</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Título:</strong> <%= @contrato.titulo %></li>
+        <li class="list-group-item"><strong>Provincia:</strong> <%= @contrato.provincia %></li>
+        <li class="list-group-item"><strong>Localidad:</strong> <%= @contrato.localidad %></li>
+        <li class="list-group-item"><strong>Coordenadas:</strong> <%= @contrato.coordenadas %></li>
+        <li class="list-group-item"><strong>Referencias Geográficas:</strong> <%= @contrato.referencias_geograficas %></li>
+        <li class="list-group-item"><strong>Superficie Total:</strong> <%= @contrato.superficie_total %> Has</li>
+        <li class="list-group-item"><strong>Superficie Apta para Uso:</strong> <%= @contrato.superficie_apta_uso %> Has</li>
+        <li class="list-group-item"><strong>Descripción del Establecimiento:</strong> <%= @contrato.descripcion_establecimiento %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Partes Involucradas</h3>
+      <p class="card-text"><strong>Capitalizador:</strong> <%= @contrato.capitalizador %></p>
+      <h4>Capitalista</h4>
+      <table class="table table-striped table-bordered mt-3">
+        <thead class="">
           <tr>
-            <td><%= nombre %></td>
-            <td><%= cuit.gsub("CUIT: ", "") %></td>
-            <td><%= domicilio.gsub("Domicilio: ", "") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="mb-4">
-    <h3>Vigencia</h3>
-    <% if @contrato.vigencia_inicio.present? %>
-      <p><strong>Fecha de Inicio:</strong> <%= @contrato.vigencia_inicio.strftime("%d de %B de %Y") %></p>
-      <p><strong>Fecha de Finalización:</strong> <%= @contrato.vigencia_fin.strftime("%d de %B de %Y") %></p>
-    <% end %>
-    <p><strong>Prórroga:</strong> Las partes podran prorrogar la presente por periodos iguales, mediando cornim acuerdo expresamente manifestado previo al vencimiento. La presente Carta Oferta no podra ser rescindida unilateralmente por ninguna de las partes, salvo incumplimiento de una de las partes de alguna de las obligaciones aqui establecidas. No obstante, estas podran de comim acuerdo, darlo por finalizado antes del plazo aqui estipulado.</p>
-  </div>
-
-  <div class="mb-4">
-    <h3>Condiciones Técnicas</h3>
-    <h4>Obligaciones del Capitalizador</h4>
-    <p><%= @contrato.obligaciones_capitalizador %></p>
-
-    <h4>Obligaciones del Capitalista</h4>
-    <p><%= @contrato.obligaciones_capitalista %></p>
-
-    <p><strong>Mortandad Tolerada:</strong> <%= @contrato.mortandad_tolerada %>%</p>
-    <p><strong>Mortandad Excedida:</strong> <%= @contrato.mortandad_excedida %>% (a cargo del capitalizador)</p>
-    <p><strong>Encierre:</strong> <%= @contrato.encierre ? 'Permitido bajo acuerdo' : 'No permitido' %></p>
-  </div>
-
-  <div class="mb-4">
-    <h3>Pesajes y Control</h3>
-    <p><strong>Frecuencia de Pesaje:</strong> <%= @contrato.frecuencia_pesaje.capitalize %></p>
-    <p><strong>Porcentaje de Pesaje:</strong> <%= @contrato.porcentaje_pesaje %>%</p>
-    <p><strong>Desbaste Estimado:</strong> <%= @contrato.desbaste %>%</p>
-  </div>
-
-  <h3>Condiciones Comerciales</h3>
-  <% if @contrato.gdpv.present? and @contrato.porcentaje_capitalizador.present? %>
-    <div class="mb-4">
-
-      <table class="table table-bordered table-striped">
-        <thead class="table-light">
-          <tr>
-            <th scope="col">Ganancia Diaria de Peso Vivo (GDPV)</th>
-            <th scope="col">Porcentaje para el Capitalizador (%)</th>
+            <th>Nombre</th>
+            <th>CUIT</th>
+            <th>Domicilio</th>
           </tr>
         </thead>
         <tbody>
-          <% JSON.parse(@contrato.gdpv).each_with_index do |gdpv, index| %>
+          <% JSON.parse(@contrato.capitalista).each do |capitalista_info| %>
+            <% nombre, cuit, domicilio = capitalista_info.split(", ") %>
             <tr>
-              <td><%= gdpv %> gramos</td>
-              <td><%= JSON.parse(@contrato.porcentaje_capitalizador)[index] %>%</td>
+              <td><%= nombre %></td>
+              <td><%= cuit.gsub("CUIT: ", "") %></td>
+              <td><%= domicilio.gsub("Domicilio: ", "") %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <p><strong>Forma de Cancelación:</strong> <%= @contrato.forma_cancelacion %></p>
     </div>
-  <% else %>
-    <div class="mb-4">
-      <p>Condiciones comerciales no especificadas</p>
-    </div>
-  <% end %>
-
-
-
-  <div class="mb-4">
-    <h3>Aceptación de Términos</h3>
-    <p><strong>Aceptó los Términos:</strong> <%= @contrato.acepto_terminos ? 'Sí' : 'No' %></p>
-    <% if @contrato.fecha_de_aceptacion.present? %>
-      <p><strong>Fecha de Aceptación:</strong> <%= @contrato.fecha_de_aceptacion.strftime("%d de %B de %Y") %></p>
-    <% end %>
   </div>
 
-  <div class="mb-4">
-    <p><strong>Fecha de Actualización:</strong> <%= @contrato.updated_at.strftime("%d/%m/%Y") %></p>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Vigencia</h3>
+      <% if @contrato.vigencia_inicio.present? %>
+        <p class="card-text"><strong>Fecha de Inicio:</strong> <%= @contrato.vigencia_inicio.strftime("%d de %B de %Y") %></p>
+        <p class="card-text"><strong>Fecha de Finalización:</strong> <%= @contrato.vigencia_fin.strftime("%d de %B de %Y") %></p>
+      <% end %>
+      <p class="card-text"><strong>Prórroga:</strong> Las partes podrán prorrogar la presente por periodos iguales, mediando acuerdo expreso antes del vencimiento. La Carta Oferta no podrá ser rescindida unilateralmente, salvo incumplimiento.</p>
+    </div>
+  </div>
 
-    <% if current_user.tipo_de_usuario == 'c' %>
-      <% if @contrato.acepto_terminos %>
-        <p class="text-success">Gracias por aceptar los términos del contrato</p>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Condiciones Técnicas</h3>
+      <h4>Obligaciones del Capitalizador</h4>
+      <p class="card-text"><%= @contrato.obligaciones_capitalizador %></p>
+
+      <h4>Obligaciones del Capitalista</h4>
+      <p class="card-text"><%= @contrato.obligaciones_capitalista %></p>
+
+      <p class="card-text"><strong>Mortandad Tolerada:</strong> <%= @contrato.mortandad_tolerada %>%</p>
+      <p class="card-text"><strong>Mortandad Excedida:</strong> <%= @contrato.mortandad_excedida %>% (a cargo del capitalizador)</p>
+      <p class="card-text"><strong>Encierre:</strong> <%= @contrato.encierre ? 'Permitido bajo acuerdo' : 'No permitido' %></p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Pesajes y Control</h3>
+      <p class="card-text"><strong>Frecuencia de Pesaje:</strong> <%= @contrato.frecuencia_pesaje.capitalize %></p>
+      <p class="card-text"><strong>Porcentaje de Pesaje:</strong> <%= @contrato.porcentaje_pesaje %>%</p>
+      <p class="card-text"><strong>Desbaste Estimado:</strong> <%= @contrato.desbaste %>%</p>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Condiciones Comerciales</h3>
+      <% if @contrato.gdpv.present? and @contrato.porcentaje_capitalizador.present? %>
+        <table class="table table-bordered table-striped mt-3">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Ganancia Diaria de Peso Vivo (GDPV)</th>
+              <th scope="col">Porcentaje para el Capitalizador (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% JSON.parse(@contrato.gdpv).each_with_index do |gdpv, index| %>
+              <tr>
+                <td><%= gdpv %> gramos</td>
+                <td><%= JSON.parse(@contrato.porcentaje_capitalizador)[index] %>%</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <p class="card-text"><strong>Forma de Cancelación:</strong> <%= @contrato.forma_cancelacion %></p>
       <% else %>
-        <p class="text-warning">Para la aceptación de los términos del contrato, por favor marque la casilla correspondiente y haga clic en "Solicitar Contrato"</p>
+        <p class="card-text text-muted">Condiciones comerciales no especificadas</p>
       <% end %>
-
-      <%= form_with(model: [@user, @contrato], local: true) do |form| %>
-        <% unless @contrato.acepto_terminos %>
-          <div class="form-check mb-3">
-            <%= form.check_box :acepto_terminos, class: "form-check-input", id: "accept_terms_checkbox" %>
-            <%= form.label :acepto_terminos, "Acepto los términos del contrato", class: "form-check-label" %>
-          </div>
-        <% end %>
-
-        <div class="text-center">
-          <%= form.submit "Solicitar Contrato", class: "btn btn-success", id: "submit_button", disabled: true %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>Términos y condiciones: <strong><%= @contrato.acepto_terminos? ? 'Sí' : 'No' %></strong></p>
-    <% end %>
+    </div>
   </div>
 
-  <%= link_to 'Volver a la lista', user_contratos_path(@user), class: 'btn btn-secondary mt-4', id: 'volverlist' %>
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Aceptación de Términos</h3>
+      <p class="card-text"><strong>Aceptó los Términos:</strong> <%= @contrato.acepto_terminos ? 'Sí' : 'No' %></p>
+      <% if @contrato.fecha_de_aceptacion.present? %>
+        <p class="card-text"><strong>Fecha de Aceptación:</strong> <%= @contrato.fecha_de_aceptacion.strftime("%d de %B de %Y") %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <%= link_to 'Volver a la lista', user_contratos_path(@user), class: 'btn btn-secondary mt-4', id: 'volverlist' %>
+  </div>
 </div>
 
 

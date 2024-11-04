@@ -17,42 +17,64 @@
   </div>
 
   <!-- Sección de Información Básica -->
-  <div class="mb-5 p-4 border rounded" style="background-color: #f8f9fa;">
-    <h4 class="mb-3">Información Básica</h4>
-    <div class="row">
-      <div class="col-md-6">
-        <%= form.label :campo, "Campo", class: "font-weight-bold" %>
-        <%= form.text_field :campo, class: "form-control mb-3" %>
-      </div>
-      <div class="col-md-6">
-        <%= form.label :capitalizador, "Capitalizador", class: "font-weight-bold" %>
-        <%= form.text_field :capitalizador, class: "form-control mb-3" %>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
+<div class="mb-5 p-4 border rounded" style="background-color: #f8f9fa;">
+  <h4 class="mb-3">Información Básica</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.label :campo, "Campo", class: "font-weight-bold" %>
+      <%= form.text_field :campo, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :capitalizador, "Capitalizador", class: "font-weight-bold" %>
+      <%= form.text_field :capitalizador, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
         <%= form.label :capitalista, "Capitalista", class: "font-weight-bold" %>
-          <select id="capitalista_field" name="contrato[capitalista][]" multiple="multiple" class="form-control select2">
-            <option value="Fideicomiso Financiero Invernea Ganadero, CUIT: 30-71572082-1, Domicilio: San Martin 491 piso 3 of. 8, CABA">
-              FFIG
-            </option>
-            <option value="Invernea Proteina Pyme Serie 1 F.F., CUIT: 30-71733535-6, Domicilio: San Martin 491 piso 3 of. 8, CABA">
-              IPS1
-            </option>
-            <option value="Invernea Proteina Pyme Serie 2 F.F., CUIT: 30-71769311-2, Domicilio: San Martin 491 piso 3 of. 8, CABA">
-              IPS2
-            </option>
-            <option value="Invernea Proteina Pyme Serie 3 F.F., CUIT: 30-71817747-9, Domicilio: San Martin 491 piso 3 of. 8, CABA">
-              IPS3
-            </option>
-            <option value="Invernea Proteina Pyme Serie 4 F.F., CUIT: 30-71848863-6, Domicilio: San Martin 491 piso 3 of. 8, CABA">
-              IPS4
-            </option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
+        <select id="capitalista_field" name="contrato[capitalista][]" multiple="multiple" class="form-control select2">
+          <option value="Fideicomiso Financiero Invernea Ganadero, CUIT: 30-71572082-1, Domicilio: San Martin 491 piso 3 of. 8, CABA">FFIG</option>
+          <option value="Invernea Proteina Pyme Serie 1 F.F., CUIT: 30-71733535-6, Domicilio: San Martin 491 piso 3 of. 8, CABA">IPS1</option>
+          <option value="Invernea Proteina Pyme Serie 2 F.F., CUIT: 30-71769311-2, Domicilio: San Martin 491 piso 3 of. 8, CABA">IPS2</option>
+          <option value="Invernea Proteina Pyme Serie 3 F.F., CUIT: 30-71817747-9, Domicilio: San Martin 491 piso 3 of. 8, CABA">IPS3</option>
+          <option value="Invernea Proteina Pyme Serie 4 F.F., CUIT: 30-71848863-6, Domicilio: San Martin 491 piso 3 of. 8, CABA">IPS4</option>
+          <option value="Otro">Otro</option>
+        </select>
       </div>
     </div>
+    <div class="col-md-6">
+      <%= form.label :titulo, "Título", class: "font-weight-bold" %>
+      <%= form.text_field :titulo, class: "form-control mb-3", placeholder: "Propietario/Arrendador/Explotador" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :provincia, "Provincia", class: "font-weight-bold" %>
+      <%= form.text_field :provincia, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :localidad, "Localidad", class: "font-weight-bold" %>
+      <%= form.text_field :localidad, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :coordenadas, "Coordenadas", class: "font-weight-bold" %>
+      <%= form.text_field :coordenadas, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :referencias_geograficas, "Referencias Geográficas", class: "font-weight-bold" %>
+      <%= form.text_field :referencias_geograficas, class: "form-control mb-3", placeholder: "Distancia a CABA, etc." %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :superficie_total, "Superficie Total (Has)", class: "font-weight-bold" %>
+      <%= form.number_field :superficie_total, step: 0.1, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :superficie_apta_uso, "Superficie Apta para Uso (Has)", class: "font-weight-bold" %>
+      <%= form.number_field :superficie_apta_uso, step: 0.1, class: "form-control mb-3" %>
+    </div>
+    <div class="col-md-12">
+      <%= form.label :descripcion_establecimiento, "Descripción Breve del Establecimiento", class: "font-weight-bold" %>
+      <%= form.text_area :descripcion_establecimiento, class: "form-control mb-3", rows: 3, placeholder: "Acceso a agua, lindero a rutas, mejoras, etc." %>
+    </div>
   </div>
+</div>
 
   <!-- Sección de Vigencia -->
   <div class="mb-5 p-4 border rounded" style="background-color: #f8f9fa;">

@@ -81,7 +81,9 @@ class ContratosController < ApplicationController
       {capitalista: []}, :vigencia_inicio, :vigencia_fin, :prorroga,
       :obligaciones_capitalizador, :obligaciones_capitalista, :mortandad_tolerada,
       :mortandad_excedida, :encierre, :frecuencia_pesaje, :porcentaje_pesaje,
-      :desbaste, { gdpv: [] }, { porcentaje_capitalizador: [] }, :forma_cancelacion
+      :desbaste, { gdpv: [] }, { porcentaje_capitalizador: [] }, :forma_cancelacion,
+      :titulo, :provincia, :localidad, :coordenadas, :referencias_geograficas,
+      :superficie_total, :superficie_apta_uso, :descripcion_establecimiento
     )
   end
 
