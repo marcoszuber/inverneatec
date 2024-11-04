@@ -91,5 +91,5 @@ gem 'select2-rails'
 #gem 'whenever', require: false
 ## Gemfile
 gem 'dotenv-rails', groups: [:development, :test, :production]
-#gem 'cloudinary'
+gem 'cloudinary'
 #gem 'activestorage-cloudinary-service'
