@@ -35,7 +35,7 @@
               <tr>
                 <td><%= documentacion.titulo %></td>
                 <td><%= truncate(documentacion.comentarios, length: 50) %></td>
-                <td><%= documentacion.user.email %></td>
+                <td><%= documentacion.user.nombre %> <%= documentacion.user.apellido %></td>
                 <td><%= documentacion.created_at.strftime("%d/%m/%Y") %></td>
                 <td>
                   <%= link_to 'Ver', documentacion_path(documentacion), class: 'btn btn-info btn-sm' %>

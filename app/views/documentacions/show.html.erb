@@ -4,7 +4,7 @@
     <div class="card-body">
       <h3 class="card-title"><%= @documentacion.titulo %></h3>
       <p class="card-text"><strong>Comentarios:</strong> <%= @documentacion.comentarios %></p>
-      <p class="card-text"><strong>Usuario:</strong> <%= @documentacion.user.email %></p>
+      <p class="card-text"><strong>Usuario:</strong> <%= @documentacion.user.nombre %> <%= @documentacion.user.apellido %></p>
       <p class="card-text"><strong>Fecha de Creación:</strong> <%= @documentacion.created_at.strftime("%d/%m/%Y") %></p>
 
       <% if @documentacion.archivo.attached? %>
