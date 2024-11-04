@@ -1,7 +1,7 @@
 class UserManagerController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin # Asegura que solo los usuarios de tipo "a" tengan acceso
-  before_action :set_user, only: [:show, :update_user_type]
+  before_action :set_user, only: [:show, :update_user_type ,:destroy]
 
   def index
     @users = policy_scope(User)

@@ -38,6 +38,7 @@ class ContratosController < ApplicationController
     @contrato.porcentaje_capitalizador = contrato_params[:porcentaje_capitalizador].to_json if contrato_params[:porcentaje_capitalizador].is_a?(Array)
 
     if @contrato.save
+      ContratoMailer.nuevo_contrato_email(@contrato.user, @contrato).deliver_later
       redirect_to user_contratos_path(@contrato.user), notice: 'Contrato creado exitosamente.'
     else
       render :new
