@@ -10,6 +10,10 @@ class PagesController < ApplicationController
     @archivos = Archivo.all.reverse[0..2]
   end
 
+  def power
+
+  end
+
 
 
 end

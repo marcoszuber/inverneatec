@@ -1,0 +1,8 @@
+<% if current_user.tipo_de_usuario == 'a' || current_user.tipo_de_usuario == 'o' %>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Informe de Power BI</h1>
+    <h6>U: mzuber@inverna.com</h6>
+    <h6>C: Inv2022.power</h6>
+    <iframe title="GDM 300924" width="100%" height="700" src="https://app.powerbi.com/reportEmbed?reportId=d6603c4e-9b81-4cd6-84ad-797bf0c9518c&autoAuth=true&ctid=2d18421f-9b98-4cff-98c5-6c2db8ce1ff7" frameborder="0" allowFullScreen="true"></iframe>
+  </div>
+<% end %>

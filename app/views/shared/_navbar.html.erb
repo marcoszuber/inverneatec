@@ -19,6 +19,11 @@
               <%= link_to "Importación de CSV", new_archivo_path, class: "nav-link text-dark" %>
             </li>
           <% end %>
+          <% if current_user.tipo_de_usuario == 'a' or current_user.tipo_de_usuario == 'o' %>
+            <li class="nav-item">
+              <%= link_to "Informe de Power BI", pages_power_path, class: "nav-link text-dark" %>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to "Contratos", user_contratos_path(current_user), class: "nav-link text-dark" %>
           </li>
