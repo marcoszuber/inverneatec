@@ -127,8 +127,23 @@
       <% if @contrato.fecha_de_aceptacion.present? %>
         <p class="card-text"><strong>Fecha de Aceptación:</strong> <%= @contrato.fecha_de_aceptacion.strftime("%d de %B de %Y") %></p>
       <% end %>
+
+      <% if current_user.tipo_de_usuario == "c" && !@contrato.acepto_terminos %>
+        <%= form_with(model: [@user, @contrato], local: true) do |form| %>
+          <div class="form-check mt-3">
+            <%= form.check_box :acepto_terminos, id: "accept_terms_checkbox", class: "form-check-input" %>
+            <label class="form-check-label" for="accept_terms_checkbox">
+              Acepto los Términos y Condiciones
+            </label>
+          </div>
+          <%= form.hidden_field :fecha_de_aceptacion, value: Time.current %>
+          <%= form.submit "Aceptar Contrato", id: "submit_button", class: "btn btn-primary mt-3 w-100", disabled: true %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
+
 
   <div class="d-flex justify-content-between mt-4">
     <%= link_to 'Volver a la lista', user_contratos_path(@user), class: 'btn btn-secondary mt-4', id: 'volverlist' %>
